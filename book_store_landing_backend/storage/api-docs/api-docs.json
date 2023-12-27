@@ -1,0 +1,133 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Doc API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/": {},
+        "/api/books": {
+            "get": {
+                "tags": [
+                    "Книги, жанры и отзывы"
+                ],
+                "summary": "Получение книг, жанров и отзывов",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "books.title": {
+                                                "type": "string",
+                                                "example": "какой-то заголовок"
+                                            },
+                                            "books.author": {
+                                                "type": "string",
+                                                "example": "какой-то автор"
+                                            },
+                                            "books.description": {
+                                                "type": "string",
+                                                "example": "какое-то описание"
+                                            },
+                                            "books.cover_image": {
+                                                "type": "string",
+                                                "example": "images/cover_books/some_image.png"
+                                            },
+                                            "genres.name": {
+                                                "type": "string",
+                                                "example": "какой-то жанр"
+                                            },
+                                            "reviews.user_name": {
+                                                "type": "string",
+                                                "example": "какое-то имя пользователя"
+                                            },
+                                            "reviews.review_text": {
+                                                "type": "string",
+                                                "example": "какой-то текст отзыва"
+                                            },
+                                            "reviews.user_photo": {
+                                                "type": "string",
+                                                "example": "какое-то фото пользователя"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No books found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Подписчики"
+                ],
+                "summary": "Создание нового подписчика",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "question",
+                                    "frequency",
+                                    "new_arrivals",
+                                    "selection_by_genre",
+                                    "recommended_papers",
+                                    "discount_notifications"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "какой-то email"
+                                    },
+                                    "question": {
+                                        "type": "string",
+                                        "example": "какой-то вопрос"
+                                    },
+                                    "frequency": {
+                                        "type": "string",
+                                        "example": "какая-то частота отправлений"
+                                    },
+                                    "new_arrivals": {
+                                        "type": "boolean",
+                                        "example": "false"
+                                    },
+                                    "selection_by_genre": {
+                                        "type": "boolean",
+                                        "example": "false"
+                                    },
+                                    "recommended_papers": {
+                                        "type": "boolean",
+                                        "example": "false"
+                                    },
+                                    "discount_notifications": {
+                                        "type": "boolean",
+                                        "example": "false"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Subscription created successfully"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    }
+}
